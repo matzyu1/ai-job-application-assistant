@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Job Application Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero" id="top">
+      <div>
+        <div class="badge-row">
+          <span class="status-badge">Prototype</span>
+          <span class="status-badge">Local Logic</span>
+          <span class="status-badge">AI-ready</span>
+        </div>
+        <h1>AI Job Application Assistant</h1>
+        <p class="subtitle">
+          An honest AI-ready prototype that helps job seekers compare a role against their profile and turn the result into clearer application material.
+        </p>
+        <p class="intro-copy">
+          The current version works without an API key. It uses rule-based analysis, keyword matching and template-based feedback to demonstrate the intended AI workflow before future AI API integration.
+        </p>
+        <div class="button-row">
+          <button class="button primary" id="tryDemoButton" type="button">Load Role Demo</button>
+          <a class="button secondary" href="#case-study">View Case Study</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Prototype summary">
+        <span class="status-badge">Mock AI workflow</span>
+        <h2>Simple user journey</h2>
+        <ol class="steps compact-steps">
+          <li><span>1</span><p>Choose demo or paste your own text</p></li>
+          <li><span>2</span><p>Run rule-based analysis</p></li>
+          <li><span>3</span><p>Review suggested improvements</p></li>
+          <li><span>4</span><p>Read case study and future AI layer</p></li>
+        </ol>
+        <p class="small-note">Prototype mode: rule-based analysis only. No external AI API is currently called.</p>
+      </aside>
+    </section>
+
+    <section class="panel" id="workflow">
+      <div class="section-heading">
+        <p class="eyebrow">Step 1 / Functional Demo Layer</p>
+        <h2>Choose demo or paste your own text</h2>
+        <p>Use the analyst role demo for a polished walkthrough, or paste a job description and candidate profile to test the local scoring logic.</p>
+      </div>
+
+      <div class="demo-strip">
+        <div>
+          <strong>Demo Scenario Layer</strong>
+          <p>Load one of five preset role and profile examples. Each scenario is designed to produce a different fit score.</p>
+        </div>
+      </div>
+
+      <div class="demo-options" aria-label="Preset role demo scenarios">
+        <button class="demo-option active" type="button" data-demo="0">Analyst / Strong</button>
+        <button class="demo-option" type="button" data-demo="1">Product / Strong</button>
+        <button class="demo-option" type="button" data-demo="2">Marketing / Moderate</button>
+        <button class="demo-option" type="button" data-demo="3">UX / Partial</button>
+        <button class="demo-option" type="button" data-demo="4">Support / Low</button>
+      </div>
+
+      <div class="input-grid">
+        <label class="field-card" for="jobDescription">
+          <span class="step-label"><b>A</b> Job Description</span>
+          <textarea id="jobDescription" rows="11" placeholder="Paste the job description here."></textarea>
+        </label>
+
+        <label class="field-card" for="candidateProfile">
+          <span class="step-label"><b>B</b> Candidate Profile</span>
+          <textarea id="candidateProfile" rows="11" placeholder="Paste a CV summary, experience, skills or project notes here."></textarea>
+        </label>
+      </div>
+
+      <div class="controls">
+        <label class="target-field" for="targetRole">
+          <span>Target Role</span>
+          <input id="targetRole" type="text" placeholder="Data Analyst" readonly>
+        </label>
+        <button class="button primary" id="analyseButton" type="button">Analyse Fit</button>
+        <button class="button ghost" id="resetButton" type="button">Reset</button>
+      </div>
+      <p class="validation-message" id="validationMessage" aria-live="polite"></p>
+    </section>
+
+    <section class="panel results-panel" id="results">
+      <div class="section-heading inline-heading">
+        <div>
+          <p class="eyebrow">Step 2 / Rule-based analysis</p>
+          <h2>Recruiter Fit Snapshot</h2>
+        </div>
+        <span class="status-badge muted">Prototype mode</span>
+      </div>
+
+      <div class="snapshot-grid">
+        <article class="score-card">
+          <div class="score-ring" id="scoreRing" style="--score: 0">
+            <strong id="overallScore">0</strong>
+            <span>/100</span>
+          </div>
+          <p id="fitLevel">Fit level: Not analysed</p>
+        </article>
+
+        <article class="report-card">
+          <h3>Best Matched Areas</h3>
+          <ul id="bestMatches">
+            <li>Run the analysis to see matched areas.</li>
+          </ul>
+        </article>
+
+        <article class="report-card">
+          <h3>Main Gaps</h3>
+          <ul id="mainGaps">
+            <li>Run the analysis to see candidate gaps.</li>
+          </ul>
+        </article>
+
+        <article class="report-card">
+          <h3>Missing Keywords</h3>
+          <div class="tag-list" id="missingKeywords">
+            <span>Pending</span>
+          </div>
+        </article>
+
+        <article class="report-card wide">
+          <h3>Recruiter First Impression</h3>
+          <p id="firstImpression">The snapshot will summarise whether the candidate looks relevant at first scan.</p>
+        </article>
+
+        <article class="report-card wide">
+          <h3>Suggested Next Action</h3>
+          <p id="nextAction">Load the demo or analyse your own text to receive a recommended next step.</p>
+        </article>
+      </div>
+
+      <p class="logic-note">
+        This prototype uses local rule-based logic to simulate the intended AI workflow. It does not currently call an external AI API.
+      </p>
+    </section>
+
+    <section class="panel" id="outputs">
+      <div class="section-heading">
+        <p class="eyebrow">Step 3 / Suggested Improvements</p>
+        <h2>Short application feedback</h2>
+        <p>Concise, template-based feedback keeps the prototype honest and readable.</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Application output tabs">
+        <button class="tab active" type="button" role="tab" aria-selected="true" data-output="summary">Recruiter Summary</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-output="cv">CV Improvements</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-output="interview">Interview Prep</button>
+      </div>
+
+      <article class="output-card">
+        <h3 id="outputTitle">Recruiter Summary</h3>
+        <div class="output-content" id="outputContent">
+          Run an analysis or load the demo example to generate short recruiter-friendly feedback.
+        </div>
+      </article>
+    </section>
+
+    <section class="case-study" id="case-study">
+      <div class="section-heading">
+        <p class="eyebrow">Step 4 / Portfolio Case Study</p>
+        <h2>Project explanation</h2>
+      </div>
+
+      <div class="case-grid">
+        <article>
+          <h3>Original Idea</h3>
+          <p>The original idea was to create an AI assistant that gives instant feedback on job descriptions, candidate fit and application material.</p>
+        </article>
+        <article>
+          <h3>Current Prototype</h3>
+          <p>This version works without an API key by using local keyword matching, scoring rules and template-based feedback. It demonstrates the workflow and user experience before adding real AI generation.</p>
+        </article>
+        <article>
+          <h3>Why This Approach</h3>
+          <p>Instead of building fake AI outputs, the prototype focuses on clear input structure, useful feedback and recruiter-friendly presentation. This makes the project easier to understand and more honest as a portfolio piece.</p>
+        </article>
+        <article>
+          <h3>Future AI Integration</h3>
+          <p>A future version would connect to an AI API to provide deeper reasoning, more natural writing suggestions, tone control, CV upload analysis and personalised interview coaching.</p>
+        </article>
+        <article class="future-card">
+          <h3>What This Demonstrates</h3>
+          <p>This project shows practical AI workflow design, product thinking, input-output structure, user journey design and basic analysis logic.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel future-ai" id="future-ai">
+      <div class="section-heading">
+        <p class="eyebrow">Future AI Layer</p>
+        <h2>What live AI would add</h2>
+        <p>A future version would connect to an AI API to generate richer CV rewrites, cover letters, interview answers, tone adjustment and deeper recruiter-style feedback.</p>
+      </div>
+
+      <div class="future-grid">
+        <article>
+          <h3>Richer application writing</h3>
+          <p>Generate stronger CV summaries, bullet rewrites and cover letter drafts from the same structured inputs.</p>
+        </article>
+        <article>
+          <h3>Deeper recruiter reasoning</h3>
+          <p>Explain why a candidate looks strong or weak, with more nuanced evidence than keyword matching alone.</p>
+        </article>
+        <article>
+          <h3>Personalised interview coaching</h3>
+          <p>Create tailored interview answers, tone variations and follow-up preparation based on the target role.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Mock AI workflow prototype. Built with HTML, CSS and JavaScript using local scoring logic.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
