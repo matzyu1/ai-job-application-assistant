@@ -4,6 +4,12 @@ An honest AI-ready portfolio prototype that helps job seekers compare a job desc
 
 This version runs fully in the browser. It does not use a backend, database, private environment variables, or an external AI API.
 
+![AI Job Application Assistant demo](assets/Job_Apply_Assistant.gif)
+
+<p>
+  <a href="https://apply.matt-yu.com/" target="_blank" rel="noopener noreferrer"><strong>Check out my work here!</strong></a>
+</p>
+
 ## Problem It Solves
 
 Job seekers often spend too much time trying to understand what a role is really asking for. They may rewrite their CV manually without knowing which parts are most relevant, which keywords are missing, or how a recruiter might read their profile at first scan.
@@ -53,7 +59,11 @@ It is designed for fast review rather than long-form content generation, making 
 
 ## Live Demo
 
-GitHub Pages:
+Live site:
+
+`https://apply.matt-yu.com/`
+
+GitHub Pages fallback:
 
 `https://matzyu1.github.io/ai-job-application-assistant/`
 
